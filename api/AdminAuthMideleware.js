@@ -3,8 +3,6 @@ var jwt = require('jsonwebtoken');
 const requireAuth = (req, res, next ) => {
 
     const token = req.body.token;
-
-
     if (token) {
         jwt.verify(token, 'cronus secret', (err, decodedToken) => {
             if (err) {

@@ -5,7 +5,6 @@ services:
     restart: always
     container_name: mysql
     environment:
-    
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: recrutement
       MYSQL_USER: user
@@ -15,7 +14,28 @@ services:
     volumes:
       - ./data:/var/lib/mysql
 
-  angular-app:
+  backend-nodejs:
+    build: ./api
+    container_name: backend
+    environment:
+      DB_HOST: db
+      DB_USER: sqluser
+      DB_PASS: password
+      DB_database: recrutement
+      DB_CONN_LIMIT: 10
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+
+  frontend-angular:
+    environment:
+        Backend-URL: "https://3000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+    container_name: frontend
     build: ./frontend
     ports:
-      - 4200:4200
+      - 80:80
+
+networks: 
+  internal-network:
+    driver: bridge

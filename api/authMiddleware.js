@@ -13,13 +13,11 @@ const requireAuth = (req, res, next ) => {
             }else {
                 console.log(decodedToken);
                 next();
-            }
-            
+            } 
         })
 
     }else {
        res.status(200).json({status: "Unauthorized"}); 
     }
-
 }
 module.exports = {requireAuth};

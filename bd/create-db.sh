@@ -12,7 +12,7 @@ DB_PASSWORD="root"
 DB_NAME="recrutement"
 
 # Path to the SQL dump file
-SQL_DUMP_FILE="/workspaces/E-recrutement/bd/job_db.sql"
+SQL_DUMP_FILE="./job_db.sql"
 
 # Import the SQL dump file using docker exec
 docker exec -i "$CONTAINER_NAME" mysql -u "$DB_USER" -p"$DB_PASSWORD" "$DB_NAME" < "$SQL_DUMP_FILE"
