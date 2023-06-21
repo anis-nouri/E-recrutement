@@ -1,0 +1,23 @@
+<div class="centered-content">
+  <div class="home-container">
+
+    <div class="sidebar has-background-white">
+      <h1 class="title has-text-primary">
+        Menu
+      </h1>
+      <div class="list-menu">
+        <a class="list-menu-item" routerLink='/dashboard'>
+          Dashboard
+        </a>
+        <a class="list-menu-item" routerLink='/candidates'  routerLinkActive="is-active">
+          Candidates
+        </a>
+        <a class="list-menu-item" routerLink='/offers' routerLinkActive="is-active">
+          Offers
+        </a>
+      </div>
+      <button class="button is-primary has-text-white" (click)='logout()'>Logout</button>
+
+    </div>
+  </div>
+</div>

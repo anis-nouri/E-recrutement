@@ -1,0 +1,26 @@
+<div class="centered-content">
+  <div class="home-container">
+    <app-menu></app-menu>
+    <div class="offer-list-container has-background-light">
+      <div *ngIf="offer">
+        <p class="title has-text-primary">{{ offer.offer_title }}</p>
+        <div class="details-text is-size-5">
+          <p>{{offer.offer_details}}</p>
+          <p>Salary: {{ offer.salary }} $</p>
+          <p>Requirements :</p>
+          <div *ngIf = "reqs">
+            <div *ngFor= "let req of reqs" >
+              <p>{{req.req_title}} : {{ req.requirement }}</p>
+            </div>
+          </div>
+          <br>
+          <div class="columns is-centered">
+            <div class="column is-half">
+              <button class="button is-primary has-text-white is-rounded" [routerLink]="['/application', offer.offer_id]">Apply</button>
+            </div>
+        </div>          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

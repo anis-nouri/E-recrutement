@@ -1,0 +1,16 @@
+Angular CLI: 6.2.1
+Node: 10.19.0
+OS: linux x64
+Angular: 
+... 
+
+Package                      Version
+------------------------------------------------------
+@angular-devkit/architect    0.8.1
+@angular-devkit/core         0.8.1
+@angular-devkit/schematics   0.8.1
+@schematics/angular          0.8.1
+@schematics/update           0.8.1
+rxjs                         6.2.2
+typescript                   2.9.2
+

@@ -1,0 +1,89 @@
+<div class="centered-content">
+  <div class="home-container">
+    <app-menu></app-menu>
+    <div class="offer-list-container has-background-light">
+      <div *ngIf="image != 'data:image/png;base64,null'">
+        <img src="{{image}}" class="image">
+      </div>
+      <div *ngIf=" image === 'data:image/png;base64,null'">
+        <img src="../../../assets/images/user.png" class="image">
+      </div>
+        
+        <div class="middle">
+          <div class="file is-primary" (change)="onFileSelected($event)" >
+            <label class="file-label">
+              <input class="file-input" type="file" name="resume" accept="image/png">
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-pen"></i>
+                </span>
+                <span class="file-label">
+                  Edit
+                </span>
+              </span>
+            </label>
+          </div>
+        </div>
+      <div *ngIf="edit === 0">
+        <div class="card">
+          <div class="card-content">
+            <div class="content">
+              <h5>Username</h5>
+              <p>{{ name }}</p>
+              <h5>Email adress</h5>
+              <p>{{ email }}</p>
+              <h5>Phone number</h5>
+              <p>{{ phone }}</p>
+              <button class="button is-primary has-text-white is-rounded" (click)="onEdit()">Edit your profile</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="edit === 1">
+          <div class="card">
+            <div class="card-content">
+              <div class="content">
+                <h5>Username</h5>
+                <div class="field">
+                  <input #nameInput class="input has-background-light" type="text" placeholder="Name" value="{{ name }}">
+                  <div *ngIf= "user">
+                    <p class="help is-danger" *ngIf="!user.user_name">User name is required</p>
+                    </div>
+                </div>
+                <h5>Email adress</h5>
+                <div class="field">
+                  <input #emailInput  class="input has-background-light form-control"  type="email" placeholder="Email" value="{{ email }}" >
+                  <div *ngIf= "user">
+                    <p class="help is-danger" *ngIf="!user.user_email">Email is required</p>
+                    <p class="help is-danger" *ngIf="mailValid == false">This email is invalid</p>
+                    <p class="help is-danger" *ngIf="userCheck">{{ userCheck }}</p>
+                  </div>
+                </div>
+                <h5>Phone number</h5>
+                <div class="field">
+                  <input #phoneInput class="input has-background-light" type="number"  placeholder="Phone number" value="{{ phone }}">
+                </div>
+                <h5>Password</h5>
+                <div class="field">
+                  <input #pwInput class="input has-background-light" type="password" placeholder="Password" value="">
+                  <div *ngIf= "user">
+                    <p class="help is-danger" *ngIf="!user.user_pwd">Password is required</p>
+                  </div>
+                </div>
+                <button class="button is-primary has-text-white is-rounded"(click)='onSave(emailInput.value, pwInput.value, nameInput.value, phoneInput.value)'>Save</button>
+              </div>
+            </div>
+          </div> 
+       </div>
+       <div *ngIf="save === 1 && edit === 0">
+        <article class="message is-success">
+          <div class="message-body">
+            Your profile has been edited.
+          </div>
+        </article>
+
+       </div>
+
+    </div>
+  </div>
+</div>

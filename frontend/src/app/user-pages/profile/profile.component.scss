@@ -1,0 +1,56 @@
+@import '../../../main-styles.scss';
+.card{
+    background-color: $color3;
+  
+  }
+  .userimage{
+    width: 258px;
+    height:204px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .userimage:hover{
+    opacity: 0.4;
+  }
+  .modify-button{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+  }
+  
+  .image {
+    width: 258px;
+    height:204px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 1;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+  }
+  .middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .image:hover  {
+    opacity: 0.3;
+  }
+  .middle:hover{
+    opacity: 1;
+  }
+  
+  .image:hover .middle {
+    opacity: 1;
+  }
+  
+  

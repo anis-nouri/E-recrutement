@@ -1,0 +1,87 @@
+.app-1 {
+    display: flex;
+    background:#50c8787e;
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+
+    align-items: center;
+    
+    &:not(.complete) {
+        cursor: pointer;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+    
+        &:active {
+            transform: scale(0.95);
+        }
+        
+        &:hover {
+            box-shadow: 0 0 0 5px #eeeeee;
+
+            .offer-buttons {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    }
+   
+}
+.app-0 {
+    display: flex;
+    background: #ff6347a6;
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+
+    align-items: center;
+    
+    &:not(.complete) {
+        cursor: pointer;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+    
+        &:active {
+            transform: scale(0.95);
+        }
+        
+        &:hover {
+            box-shadow: 0 0 0 5px #eeeeee;
+
+            .offer-buttons {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    }
+   
+}
+.app {
+    display: flex;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+
+    align-items: center;
+    
+    &:not(.complete) {
+        cursor: pointer;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+    
+        &:active {
+            transform: scale(0.95);
+        }
+        
+        &:hover {
+            box-shadow: 0 0 0 5px #eeeeee;
+
+            .offer-buttons {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    }
+   
+}
+
+
+

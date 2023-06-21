@@ -1,0 +1,51 @@
+<div class="centered-content">
+  <div class="home-container">
+    <app-adminmenu></app-adminmenu>
+    <div class="offer-list-container has-background-light">
+      <div class="card">
+        <div class="card-content">
+          <div class="content">
+            <div *ngIf="success === 0" >
+              <h5>Title</h5>
+              <div class="field">
+                <input #titleInput class="input has-background-light" type="text" placeholder="Title">
+              </div>
+              <h5>Details</h5>
+              <div class="field">
+                <textarea #detailsInput class="textarea is-primary" placeholder="Details" ></textarea>
+              </div>
+              <h5>Salary</h5>
+              <div class="field">
+                <input #salaryInput class="input has-background-light" type="text" placeholder="Salary" >
+              </div>
+              <br>
+              <div *ngIf="isRequired === 1 ">
+                <p class="help is-danger" >Title, details and slary are required</p>
+              </div>
+              <div class="columns is-centered">
+                <div class="column is-half">
+                  <button class="button is-primary" (click)="save(titleInput.value,detailsInput.value,salaryInput.value)"  >
+                    <span class="icon is-small">
+                      <i class="fas fa-check"></i>
+                    </span>
+                    <span>Save</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="success === 1">
+              <article class="message is-success">
+                <div class="message-header">
+                  <p>Success</p>
+                </div>
+                <div class="message-body">
+                  Offer have been saved !!
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="centered-content">
+  <div class="home-container">
+    <app-adminmenu></app-adminmenu>
+    <div class="offer-list-container has-background-light">
+      <div class="card">
+        <div class="card-content">
+          <div class="content">
+            <div *ngIf="titleSavedMessage == 0">
+              <p>Test title</p>
+              <input #titleInput class="input has-background-light" type="text" placeholder="Title"> 
+              <p class="help is-danger" *ngIf="titleRequiredMessage">{{titleRequiredMessage}}</p>
+              <br><br>
+            <div class="columns is-centered">
+              <div class="column is-half">
+                <button class="button is-primary is-rounded" (click)="saveTitle(titleInput.value)"> Save Title</button>
+              </div>
+            </div>
+            </div>
+            <div *ngIf="titleSavedMessage == 1">
+              <article class="message is-primary">
+                <div class="message-body">
+                  Title has been saved !
+                </div>
+              </article>
+            </div>
+            <br>
+            <div *ngFor="let item of addQ ; let i = index">
+              <textarea  #questionInput class="textarea is-primary" placeholder="Question" (keyup)="addQuesVal($event.target.value,i)"></textarea>
+              <br>
+            </div>
+            <div class="columns is-centered">
+              <div class="column is-half">
+                <button class="button is-primary is-rounded" (click)="addQuestion()"><i class="fas fa-plus"> Add Question</i></button>
+              </div>
+            </div>
+            <div class="columns is-centered">
+              <div class="column is-half">
+                <button class="button is-primary has-text-white is-rounded" (click)="save()">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>

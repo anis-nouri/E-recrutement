@@ -1,0 +1,169 @@
+<div class="centered-content">
+  <div class="home-container">
+    <app-adminmenu></app-adminmenu>
+    <!--Offer Details-->
+    <div class="offer-list-container has-background-light">
+      <div *ngIf = "edit === 0">
+        <div class="card">
+          <div class="card-content">
+            <div class="content">
+                <div *ngIf="offer">
+                  <p class="title has-text-primary">{{ offer.offer_title }}</p>
+                    <div class="details-text is-size-5">
+                      <p>{{offer.offer_details}}</p>
+                      <p>Salary: {{ offer.salary }} $</p>
+                      <p>Requirements :</p>
+                      <div *ngIf = "reqs">
+                        <div *ngFor= "let req of reqs" >
+                          <p>{{req.req_title}} : {{ req.requirement }}</p>
+                        </div>
+                      </div>
+                      <br>
+                      <div *ngIf="offer.test_id != null">
+                        <div class="columns is-centered">
+                          <div class="column is-half">
+                            <button class="button is-primary has-text-white is-rounded" (click)="editOffer()">Edit offer</button>
+                            <button class="button is-primary has-text-white is-rounded"[routerLink]="['/edittest', offer.test_id]" >Edit Test</button>
+                            <button class="button is-danger is-outlined is-rounded" (click)="deleteOff()">
+                              <span>Delete offer</span>
+                              <span class="icon is-small">
+                                <i class="fas fa-times"></i>
+                              </span>
+                            </button>
+                          </div>
+                        </div>   
+                      </div> 
+                      <div *ngIf="offer.test_id == null">
+                        <div class="columns is-centered">
+                          <div class="column is-half">
+                            <button class="button is-primary has-text-white is-rounded" (click)="editOffer()">Edit offer</button>
+                            <button class="button is-primary has-text-white is-rounded" [routerLink]="['/addtest', offer.offer_id]" >Add test</button>
+                            <button class="button is-danger is-outlined is-rounded" (click)="deleteOff()">
+                              <span>Delete offer</span>
+                              <span class="icon is-small">
+                                <i class="fas fa-times"></i>
+                              </span>
+                            </button>
+                          </div>
+                        </div>   
+
+                      </div>      
+                    </div>
+                </div>
+             </div>
+            </div>
+         </div>  
+      </div>
+      <!--Edit Offer-->
+      <div *ngIf =" edit === 1"> 
+        <div class="card">
+          <div class="card-content">
+            <div class="content">
+              <div *ngIf="saveOf === 0">
+                <h5>Title</h5>
+                <div class="field">
+                  <input #titleInput class="input has-background-light" type="text" placeholder="Title" value="{{ offer.offer_title }}">
+                </div>
+                <h5>Details</h5>
+                <div class="field">
+                  <textarea #detailsInput class="textarea is-primary" placeholder="Details" value="{{offer.offer_details}}"></textarea>
+                </div>
+                <h5>Salary</h5>
+                <div class="field">
+                  <input #salaryInput class="input has-background-light" type="text" placeholder="Salary" value="{{ offer.salary }}">
+                </div>
+                <div *ngIf= "messageOfferEmpty">
+                  <p class="help is-danger" >{{messageOfferEmpty}}</p>
+                </div>
+                <div class="columns is-centered">
+                  <div class="column is-half">
+                    <button class="button is-primary has-text-white is-rounded" (click)="saveOffer(titleInput.value,detailsInput.value,salaryInput.value)">Save</button>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="saveOf === 1">
+                <div class="notification is-primary is-light">
+                  Your changes have been saved successfully. 
+                </div>
+                <br>
+              </div>
+              <div *ngIf="reqs">
+                <h5>Requirements</h5>
+                <div *ngFor= "let req of reqs; let i=index">
+                  <div *ngIf="saveR[i] != 1">
+                      <p>{{i+1}})</p>
+                    <div class="field">
+                      <input #titleReq class="input has-background-light" type="text" placeholder="Requirement title" value="{{req.req_title}}">
+                    </div>
+                    <div class="field">
+                      <input #Req class="input has-background-light" type="text" placeholder="Requirement" value="{{ req.requirement }}">
+                    </div>
+                    <div class="buttons has-addons">
+                      <button class="button is-primary" (click) ="saveReq(titleReq.value,Req.value,req.req_id)">
+                        <span class="icon is-small">
+                          <i class="fas fa-check"></i>
+                        </span>
+                        <span>Save</span>
+                      </button>
+                      <button class="button is-danger is-outlined" (click)="deleteReq(req.req_id)">
+                        <span>Delete</span>
+                        <span class="icon is-small">
+                          <i class="fas fa-times"></i>
+                        </span>
+                      </button>
+                    </div>
+                    <br>
+                  </div>
+                  <div *ngIf="saveR[i] === 1">
+                    <br>
+                    <div class="notification is-primary is-light">
+                      Your changes have been saved successfully. 
+                    </div>
+                    <br>
+                  </div>                 
+                </div>
+              </div> 
+              <!--Add Requirement--> 
+              <div *ngFor="let item of addR ; let i=index">
+                <div *ngIf="saveAddReq[i] != 1">
+                  <div class="field">
+                    <input #titleReq class="input has-background-light" type="text" placeholder="Requirement title">
+                  </div>
+                  <div class="field">
+                    <input #Req class="input has-background-light" type="text" placeholder="Requirement">
+                  </div>
+                  <div class="buttons has-addons">
+                    <button class="button is-primary" (click) ="saveaddReq(titleReq.value,Req.value)">
+                      <span class="icon is-small">
+                        <i class="fas fa-check"></i>
+                      </span>
+                      <span>Save</span>
+                    </button>
+                  </div>
+                  <br>
+                </div>
+                <div *ngIf="saveAddReq[i] === 1">
+                  <br>
+                  <div class="notification is-primary is-light">
+                    Your changes have been saved successfully. 
+                  </div>
+                  <br>
+                </div> 
+              </div> 
+              <div *ngIf= "messageReqEmpty">
+                <p class="help is-danger" >{{messageReqEmpty}}</p>
+              </div>
+              <div class="columns is-centered">
+                <div class="column is-half">
+                  <button class="button is-primary is-rounded" (click)="addReq()"><i class="fas fa-plus"></i></button>
+                </div>
+              </div>            
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

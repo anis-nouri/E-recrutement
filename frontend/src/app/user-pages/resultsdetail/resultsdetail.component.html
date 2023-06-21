@@ -1,0 +1,33 @@
+<div class="centered-content">
+  <div class="home-container">
+    <app-menu></app-menu>
+    <div class="offer-list-container has-background-light">
+      <div *ngIf="app">
+        <div *ngIf="app.accepted === null">
+          <article class="message is-info">
+            <div class="message-body">
+              Dear {{name}} : <br>We are currently examining your application, we will respond you as soon as possible.
+            </div>
+          </article>
+        </div>
+        <div *ngIf="app.accepted === 0">
+          <article class="message is-info">
+            <div class="message-body">
+              Dear {{name}} : <br>Thank you for your application. As you can imagine, we received a large number of applications. I am sorry to inform you that you have not been selected for an interview for this position.
+            </div>
+          </article>
+        </div>
+        <div *ngIf="app.accepted === 1" >
+          <article class="message is-success">
+            <div class="message-body">
+              <div *ngIf="interv">
+                Dear {{name}} : <br>Thank you for your application. We would like to invite you to interview.<br>Your interview has been scheduled for <strong>{{interv[0].interv_date | date:'short'}}</strong> at <strong>{{interv[0].interv_location}}</strong>.
+              </div>
+            </div>
+          </article>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div> 

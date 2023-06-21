@@ -1,0 +1,12 @@
+<div class="centered-content">
+  <div class="home-container">
+    <app-adminmenu></app-adminmenu>
+    <div class="offer-list-container has-background-light">
+      <div class="offer" *ngFor="let c of candidates" [routerLink]="['/appdetails', c.offer_id,c.user_id]">
+        <div class="offer-text">
+          <p>{{ c.user_name }} | {{c.offer_title}} | {{c.score}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

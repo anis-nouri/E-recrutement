@@ -1,0 +1,33 @@
+<div class="centered-content">
+  <div class="home-container">
+
+    <app-adminmenu></app-adminmenu>
+  
+
+    <div class="offer-list-container has-background-light">
+      <div *ngIf="offers">
+        <!-- Offers -->
+        <h1 class="title has-text-primary">
+          Job offers
+        </h1>
+        <div class="offer" *ngFor="let offer of offers" [routerLink]="['/editoffer', offer.offer_id]">
+          <div class="offer-text">
+            <p>{{ offer.offer_title }}</p>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="columns is-centered">
+        <div class="column is-half">
+          <button class="button is-primary is-rounded" routerLink='/addoffer'><i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+
+      <div *ngIf="!offers">
+        <h3 class="empty-state-text">There is no offer</h3>
+      </div>
+
+    </div>
+
+  </div>
+</div>

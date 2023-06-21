@@ -1,0 +1,91 @@
+<div class="centered-content">
+  <div class="home-container">
+    <app-adminmenu></app-adminmenu>
+    <div class="offer-list-container has-background-light">
+      <div class="card">
+        <div class="card-content">
+          <div class="content">
+            <div class="details-text is-size-5">
+              <div *ngIf="app">
+                <h3 class="title has-text-primary"><i class="far fa-id-card "></i> Candidate's informations</h3>
+                <p>
+                <i class="fas fa-user"></i>
+                {{app[0]["user_name"]}}
+                </p>
+                <p>
+                <i class="fas fa-at"></i>
+                {{app[0]["user_email"]}}
+                </p>
+                <p>
+                <i class="fas fa-phone"></i>
+                {{app[0]["user_phone"]}}
+                </p>
+                <h3 class="title has-text-primary"><i class="fas fa-star-half-alt"></i> Score: {{app[0]["score"]}}</h3>
+                <button class="button is-primary has-text-white is-rounded" (click)="onClickDownloadPdf()">
+                  Download CV
+                </button>
+                <div *ngIf="app[0]['accepted']===1">
+                  <br>
+                  <span class="tag is-success is-large">Accepted</span>
+                </div>
+                <div *ngIf="app[0]['accepted']===0">
+                  <br>
+                  <span class="tag is-danger is-large">Refused</span>
+                </div>
+                <div *ngIf="app[0]['accepted']===null">
+                  <br>
+                  <div *ngIf="answer === 3">
+                    <p class="buttons">
+                      <button class="button is-success" (click)="respond(1)">
+                        <span class="icon is-small">
+                          <i class="fas fa-check"></i>
+                        </span>
+                        <span>Accept</span>
+                      </button>
+                      <button class="button is-danger is-outlined" (click)="respond(0)">
+                        <span>Refuse</span>
+                        <span class="icon is-small">
+                          <i class="fas fa-times"></i>
+                        </span>
+                      </button>
+                    </p>
+                  </div>
+                  <div *ngIf="answer === 0">
+                    <article class="message is-danger">
+                      <div class="message-body">
+                        Candidate refused !
+                      </div>
+                    </article>
+                  </div>  
+                  <div *ngIf="answer === 1">
+                    <article class="message is-success">
+                      <div class="message-body">
+                        Candidate accepted !
+                      </div>
+                    </article>
+                    <!--interview details-->
+                    <div *ngIf="Interview === 0">
+                      <label>Date of the interview</label>
+                      <input #interviewDate class="input has-background-light" type="datetime-local"  name="InterviewDate">
+                      <label>Location</label>
+                      <input #interviewLocation class="input has-background-light" type="location"  name="InterviewDate">
+                      <br><br>
+                      <button class="button is-primary has-text-white is-rounded" (click)="saveInterview(interviewDate.value,interviewLocation.value)" >Save</button>
+                    </div>
+                    <div *ngIf="Interview === 1">
+                      <article class="message is-success">
+                        <div class="message-body">
+                          Interview Saved !!
+                        </div>
+                      </article>
+                    </div>    
+                  </div> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

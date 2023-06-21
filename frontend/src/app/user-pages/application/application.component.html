@@ -1,0 +1,103 @@
+<div class="centered-content">
+  <div class="home-container">
+    <app-menu></app-menu>
+    <div class="offer-list-container has-background-light">
+      <div *ngIf="exist == 0">
+      <!--display test-->
+      <div *ngIf="offer">
+        <p class="title has-text-primary">{{ offer.offer_title }}</p><br>
+      </div>
+        <div class="details-text">
+          <div class="is-size-3">
+            <div class="card">
+              <div class="card-content">
+                <div class="content">
+                  <div *ngIf="Test">
+                    <p>{{ Test[0].test_title }}</p>     
+                      <div class="is-size-5">
+                        <div *ngIf='successtest === 0'>
+                          <form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
+                            <div *ngFor="let question of questions">
+                              <p><br>{{ question["q_content"] }}</p>
+                              <div *ngFor="let choice of choices; let i=index">
+                                <div *ngIf='question["q_id"] === choice["q_id"]'>
+                                  <label>
+                                    <input type="checkbox" [value]= 'i'  (change)="onCheckboxChange($event)"/>
+                                    {{ choice["c_content"] }}
+                                  </label>
+                                </div>
+                             </div>
+                            </div> 
+                            <div class="columns is-centered">
+                              <div class="column is-half">
+                                <input type="submit" value="Submit" class ="button is-primary has-text-white is-rounded ">
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- test submitted message-->
+              <div *ngIf='successtest === 1'>
+                <article class="message is-success">
+                  <div class="message-header">
+                    <p>Test submitted</p>
+                  </div>
+                  <div class="message-body">
+                    Your test has been submitted, please uploade your cv and click apply ! 
+                  </div>
+                </article>
+              </div>
+            </div>
+            <br>
+            <!--upload cv button-->
+            <div *ngIf='successapp === 0'>
+              <div class="columns is-centered">
+                <div class="column is-half">
+                  <div class="file is-primary" (change)="onFileSelected($event)" >
+                    <label class="file-label">
+                      <input class="file-input" type="file" name="resume" accept=".pdf">
+                      <span class="file-cta">
+                        <span class="file-icon">
+                          <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                          Uploade cv…
+                        </span>
+                     </span>
+                   </label>
+                  <div *ngIf="Test">
+                    <button class="button is-primary has-text-white " [disabled]='successtest === 0 || successcv === 0'  (click)= "onApply()">Apply</button>
+                  </div>
+                  <div *ngIf="! Test">
+                    <button class="button is-primary has-text-white " [disabled]='successcv === 0'  (click)= "onApply()">Apply</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="successapp === 1">
+            <article class="message is-success">
+              <div class="message-header">
+                <p>Success</p>
+              </div>
+              <div class="message-body">
+                Your application has been sent, we will notify you as soon as the result is available.
+              </div>
+            </article>
+            </div>
+        </div>
+      </div>
+      <div *ngIf='exist === 1'>
+        <article class="message is-danger">
+          <div class="message-body">
+            You have <strong>already applied</strong> for this offer. check the <a routerLink='/results' >results</a> if you want, or apply for other offer.
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>

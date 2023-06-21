@@ -1,0 +1,96 @@
+<div class="centered-content">
+  <div class="home-container">
+    <app-adminmenu></app-adminmenu>
+      <div class="offer-list-container has-background-light">
+        <div class="details-text">
+          <div class="is-size-4">
+            <div class="card">
+              <div class="card-content">
+                <div class="content">
+                  <div *ngIf="successMessage === 0">
+                    <div *ngIf="Test">
+                      <p>Edit title</p>
+                      <input #titleInput class="input has-background-light" type="text" placeholder="Title" value='{{ Test[0].test_title }}' (keyup)="edittitleVal($event.target.value)"> 
+                      <br><br>
+                      <p>Edit test</p>
+                      <div class="is-size-5">  
+                        <form [formGroup]="form"  novalidate>
+                          <div *ngFor="let question of questions; let j=index">
+                            <br><textarea  #questionInput class="textarea is-primary" placeholder="Details" value='{{ question["q_content"] }}' (keyup)="editQuesVal($event.target.value,j)"></textarea>
+                            <div *ngFor="let choice of choices; let i=index">
+                              <div *ngIf='question["q_id"] === choice["q_id"]'><br>
+                                <div class="columns">
+                                  <div class="column">
+                                    <input #choiceInput class="input has-background-light" type="text" placeholder="Choice" value='{{ choice["c_content"] }}' (keyup)="editChoiceVal($event.target.value,i)">  
+                                  </div>
+                                  <div class="column">
+                                    <div *ngIf ='choice["c_correct"] === 1'>
+                                      <input type="checkbox" [value]= 'i'  (change)="onCheckboxChange($event)"checked />
+                                    </div>
+                                    <div *ngIf ='choice["c_correct"] === 0'>
+                                      <input type="checkbox" [value]= 'i'  (change)="onCheckboxChange($event)"/>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <br>
+                            <div *ngFor="let item of addC ; let i = index">
+                              <div *ngIf="j == addC[i]">
+                                <div class="columns">
+                                  <div class="column">
+                                    <input #choiceInput class="input has-background-light" type="text" placeholder="Choice"  (keyup)="addCoiceVal($event.target.value,i,question['q_id'])">  
+                                  </div>
+                                  <div class="column">
+                                    <input type="checkbox"/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <br>
+                            <div class="columns is-centered">
+                              <div class="column is-half">
+                                <button class="button is-primary is-rounded" (click)="addChoice(j)"><i class="fas fa-plus"></i></button>
+                              </div>
+                            </div>
+                            <br>
+                          </div>
+                        </form>    
+                        <div *ngFor="let item of addQ ; let i = index">
+                          <textarea  #questionInput class="textarea is-primary" placeholder="Details" (keyup)="addQuesVal($event.target.value,i)"></textarea>
+                          <br>
+                        </div>
+                        <div class="columns is-centered">
+                          <div class="column is-half">
+                            <button class="button is-primary is-rounded" (click)="addQuestion()"><i class="fas fa-plus"> Add Question</i></button>
+                          </div>
+                        </div>                
+                        <br>
+                        <div class="columns is-centered">
+                          <div class="column is-half">
+                            <button class="button is-primary has-text-white is-rounded" (click)="save()">Save</button>
+                            <button class="button is-danger is-outlined is-rounded" (click)="deleteTest()">
+                              <span>Delete test</span>
+                              <span class="icon is-small">
+                                <i class="fas fa-times"></i>
+                              </span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="successMessage===1 ">
+                <article class="message is-primary">
+                  <div class="message-body">
+                    Your changes have been saved successfully.
+                  </div>
+                </article>
+              </div>
+           </div>
+          </div>
+       </div>
+      </div>
+  </div>  
+</div>
