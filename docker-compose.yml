@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    container_name: mysql
+    environment:
+    
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: recrutement
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    ports:
+      - 3306:3306
+    volumes:
+      - ./data:/var/lib/mysql
+
+  angular-app:
+    build: ./frontend
+    ports:
+      - 4200:4200
