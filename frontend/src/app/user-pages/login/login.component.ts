@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { user } from 'src/app/shared/user';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-login',
@@ -48,7 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(user){
-    this.httpClient.post<any>('http://localhost:3000/login', user).subscribe(res => {
+    this.httpClient.post<any>(`${environment.baseUrl}/login/`, user).subscribe(res => {
       if (res.status =="password or email incorrect"){
         this.loginValidationMsg = "The email address or password is incorrect. Please retry" ;
       }else{

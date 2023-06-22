@@ -39,7 +39,7 @@ ports:
     name: Node.js Backend
     description: Node.js Backend API
 
-  - port: 3200
+  - port: 3306
     onOpen: open-preview
     name: Database
     description: Database Service

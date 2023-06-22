@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl:''
+  baseUrl:"https://3000-anisnouri-erecrutement-a3bfhmfm17t.ws-eu100.gitpod.io",
 };
 
 /*

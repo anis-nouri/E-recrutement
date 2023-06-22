@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { user } from 'src/app/shared/user';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
+
 
 
 @Component({
@@ -44,7 +46,7 @@ export class SignupComponent implements OnInit {
   }
 
   register(user){
-    this.httpClient.post<any>('http://localhost:3000/signup', user).subscribe(res => {
+    this.httpClient.post<any>(`${environment.baseUrl}/signup`, user).subscribe(res => {
       console.log(res.status);
       if (res.status =="email exist"){
         this.userCheck = "Email adress already exists !" ;

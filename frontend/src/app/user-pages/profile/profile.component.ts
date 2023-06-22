@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { user } from 'src/app/shared/user';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -54,7 +55,7 @@ export class ProfileComponent implements OnInit {
   }
 
   register(user){
-    this.httpClient.post<any>('http://localhost:3000/editprofile', user).subscribe(res => {
+    this.httpClient.post<any>(`${environment.baseUrl}/editprofile`, user).subscribe(res => {
       console.log(res.status);
       if (res.status =="email exist"){
         this.userCheck = "Email adress already exists !" ;

@@ -5,6 +5,8 @@ import {  ActivatedRoute } from '@angular/router';
 import { req } from 'src/app/shared/req';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
+
 
 
 
@@ -44,7 +46,7 @@ export class OfferdetailComponent implements OnInit {
    
   }
   public getReq() {
-      this.httpClient.post<req[]>('http://localhost:3000/offerdetail/'+this.id, { token: this.token} ).subscribe (
+      this.httpClient.post<req[]>(`${environment.baseUrl}/offerdetail/`+this.id, { token: this.token} ).subscribe (
         Response =>{
           this.reqs = Response;  
         }
