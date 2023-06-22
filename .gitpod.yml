@@ -15,14 +15,10 @@ tasks:
       nvm install 8.9.4
 
       # Install Angular CLI
-      npm install -g @angular/cli
+      npm install -g @angular/cli@6.1.0
 
       # Dive into the frontend directory
       cd frontend
-
-    command: |
-      npm install
-      ng serve
       
 
 # Ports to expose on workspace startup
