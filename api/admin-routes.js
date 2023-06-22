@@ -41,7 +41,7 @@ router.post('/admin', (req , res , next) => {
 })
 
 //Get all offers 
-router.post('/offers',requireAuth, (req,res)=>{
+router.post('/offers', (req,res)=>{
     pool.query('select * from offer', (err, result, fields) => {
         if (err){
             return console.log(err);

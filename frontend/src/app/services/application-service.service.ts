@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,20 +14,20 @@ export class ApplicationServiceService {
 
 
   public getTest(id): Observable <any> {
-    return this.httpClient.post<any>('http://localhost:3000/application/'+ id , { token: this.token})
+    return this.httpClient.post<any>(`${environment.baseUrl}/application/`+ id , { token: this.token})
   }
 
   public apply(application): Observable <any> {
-    return this.httpClient.post<any>('http://localhost:3000/application/'+ application.offer_id +'/apply' ,{ token: this.token, app: application})
+    return this.httpClient.post<any>(`${environment.baseUrl}/application/`+ application.offer_id +'/apply' ,{ token: this.token, app: application})
   }
   public verifApplication(app): Observable <any> {
-    return this.httpClient.post<any>('http://localhost:3000/verify' , app);
+    return this.httpClient.post<any>(`${environment.baseUrl}/verify` , app);
   }
   public respond(accepted,phone,offerid,userid): Observable <any> {
-    return this.httpClient.post<any>('http://localhost:3000/respond/'+ offerid + '/' + userid , {accepted: accepted,phone:phone});
+    return this.httpClient.post<any>(`${environment.baseUrl}/respond/`+ offerid + '/' + userid , {accepted: accepted,phone:phone});
   }
   public interview(date,location,offerid,userid): Observable <any> {
-    return this.httpClient.post<any>('http://localhost:3000/interview/'+ offerid + '/' + userid , {interv_date: date,interv_location: location});
+    return this.httpClient.post<any>(`${environment.baseUrl}/interview/`+ offerid + '/' + userid , {interv_date: date,interv_location: location});
   }
   
 }

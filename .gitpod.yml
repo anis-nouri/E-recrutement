@@ -1,0 +1,43 @@
+image: gitpod/workspace-full
+
+# Commands that will run on workspace start
+tasks:
+  - name: Setup envirement
+    init: |
+      # Install NVM (Node Version Manager)
+      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+     
+      # Load NVM into the current shell session
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+      # Install Node.js version 8.9.4
+      nvm install 8.9.4
+
+      # Install Angular CLI
+      npm install -g @angular/cli
+
+      # Dive into the frontend directory
+      cd frontend
+
+    command: |
+      npm install
+      ng serve
+      
+
+# Ports to expose on workspace startup
+ports:
+  - port: 80
+    onOpen: open-preview
+    name: Angular
+    description: Angular Web App
+
+  - port: 3000
+    onOpen: open-preview
+    name: Node.js Backend
+    description: Node.js Backend API
+
+  - port: 3200
+    onOpen: open-preview
+    name: Database
+    description: Database Service

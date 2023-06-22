@@ -16,3 +16,4 @@ SQL_DUMP_FILE="./job_db.sql"
 
 # Import the SQL dump file using docker exec
 docker exec -i "$CONTAINER_NAME" mysql -u "$DB_USER" -p"$DB_PASSWORD" "$DB_NAME" < "$SQL_DUMP_FILE"
+docker exec -i "$CONTAINER_NAME" mysql -u "$DB_USER" -p"$DB_PASSWORD" -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root'; FLUSH PRIVILEGES;"

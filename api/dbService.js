@@ -9,5 +9,18 @@ const pool = createPool({
     connectionLimit:process.env.DB_connLimit
 })
 
+// Attempt to acquire a connection from the pool
+pool.getConnection((error, connection) => {
+    if (error) {
+      console.error('Error connecting to the database:', error);
+      return;
+    }
+  
+    console.log('Connected to the database');
+    
+    // Release the connection back to the pool
+    connection.release();
+  });
+
 module.exports = pool;
 

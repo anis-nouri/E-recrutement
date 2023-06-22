@@ -26,26 +26,9 @@ app.use(userRouter)
 app.use(adminRouter)
 
 
-
-
 /***************************************************/
 app.listen(3000,()=>{
-    console.log("Server is listning on port 3000");
-    console.log(process.env.DB_database);
+console.log("Server is listning on port 3000");
 
-    const pool = require('./dbService'); // Adjust the path to your db service file
-
-// Attempt to acquire a connection from the pool
-pool.getConnection((error, connection) => {
-  if (error) {
-    console.error('Error connecting to the database:', error);
-    return;
-  }
-
-  console.log('Connected to the database!');
-  
-  // Release the connection back to the pool
-  connection.release();
-});
 });
 
