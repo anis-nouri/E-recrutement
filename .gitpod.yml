@@ -14,11 +14,13 @@ tasks:
       # Install Node.js version 8.9.4
       nvm install 8.9.4
 
+      # Dive into the frontend directory
+      cd frontend
+      
       # Install Angular CLI
       npm install -g @angular/cli@6.1.0
 
-      # Dive into the frontend directory
-      cd frontend
+      
       
 
 # Ports to expose on workspace startup
