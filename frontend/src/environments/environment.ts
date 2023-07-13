@@ -4,11 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl:"https://3000-anisnouri-erecrutement-yamisstn74e.ws-eu101.gitpod.io",
-  cognito : {
-    userPoolId :'us-east-1_BrylzPIQn',
-    userPoolWebClientId: '39rsuvtfgo83c32o8718iuqftg'
-  }
+  baseUrl:"https://3000-anisnouri-erecrutement-a3bfhmfm17t.ws-eu100.gitpod.io",
 };
 
 /*

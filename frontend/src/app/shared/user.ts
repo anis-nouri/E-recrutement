@@ -6,6 +6,7 @@ export class user{
         public user_name: string,
         public user_phone: number,
         public user_photo: string 
+        
     ){
         
     }
