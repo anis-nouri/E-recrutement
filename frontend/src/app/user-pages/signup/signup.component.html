@@ -1,9 +1,9 @@
 <div class="centered-content">
   <div class="white-box">
 
+    <!-- sign up -->
+    <div *ngIf="!isConfirm">
     <h1 class="title has-text-primary">Sign up</h1>
-
-   
     <div class="field">
       <p class="control has-icons-left has-icons-right">
         <input #emailInput  class="input has-background-light form-control"  type="email" placeholder="Email" >
@@ -57,16 +57,42 @@
 
     <div class="field" style="display: flex; justify-content: flex-end;">
       <p class="control">
-        <button class="button is-primary has-text-white" (click)='signup(emailInput.value, pwInput.value, nameInput.value, phoneInput.value)'>
+        <button class="button is-primary has-text-white" (click)='signupWithCognito(emailInput.value, pwInput.value, nameInput.value, phoneInput.value)'>
           Sign up
         </button>
       </p>
     </div>
+  </div>
     <br>
-    
 
     <p class="has-text-grey">Already got an account? <a routerLink="/login">Login</a> now!</p>
 
+
+    <!-- Confirm sign up -->
+    <div *ngIf="isConfirm">
+    <h1 class="title has-text-primary">Confirm email</h1>
+    <div class="field">
+      <p class="control has-icons-left has-icons-right">
+        <input #codeInput class="input has-background-light" type="text" placeholder="Enter verification code">
+        <span class="icon is-small is-left">
+          <i class="fas fa-user"></i>
+        </span>
+      </p>
+    </div>
+
+    <div class="field" style="display: flex; justify-content: flex-end;">
+      <p class="control">
+        <button class="button is-primary has-text-white" (click)='confirmSignup(codeInput)'>
+          Confirm
+        </button>
+      </p>
+    </div>
   </div>
+
+
+  </div>
+  
+
+
 </div>
 
