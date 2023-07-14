@@ -2,18 +2,20 @@
 const { Auth } = require('aws-amplify');
 const AWS = require('aws-sdk');
 const { CognitoIdentityProviderClient, AuthFlowType, InitiateAuthCommand } = require("@aws-sdk/client-cognito-identity-provider");
+const config = require('../config');
 
 
-const { ListUserPoolsCommand } = require("@aws-sdk/client-cognito-identity-provider");
+
 
 async function login(req, res) {
+  console.log("zbuu")
     try {
         const { username } = req.body;
         const client = new CognitoIdentityProviderClient({
-            region: 'us-east-1',
+            region: config.AWS_REGION,
             credentials: {
-              accessKeyId: 'AKIAQZ3PILW22EEOVBCR',
-              secretAccessKey: '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',
+              accessKeyId: config.AWS_ACCESS_KEY,
+              secretAccessKey: config.AWS_SECRET_ACCESS_KEY,
             },
           });
           
@@ -24,7 +26,7 @@ async function login(req, res) {
         AuthParameters: {
           USERNAME: username
         },
-        ClientId: '39rsuvtfgo83c32o8718iuqftg', 
+        ClientId: config.USER_POOL_APP_CLIENT_ID, 
       });
       console.log(command);
       const response = await client.send(command);

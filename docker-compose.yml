@@ -23,6 +23,8 @@ services:
       DB_PASS: root
       DB_database: recrutement
       DB_CONN_LIMIT: 10
+      AWS_ACCESS_KEY: ${AWS_ACCESS_KEY}
+      AWS_secret_ACCESS_KEY: ${AWS_secret_ACCESS_KEY}
       AWS_REGION: "us-east-1"
       USER_POOL_ID: "us-east-1_BrylzPIQn"
       USER_POOL_APP_CLIENT_ID: "39rsuvtfgo83c32o8718iuqftg"
@@ -32,8 +34,9 @@ services:
       - 3000:3000
     volumes:
       - ./api:/app
-    depends_on:
-      - db
+      
+    #depends_on:
+    #  - db
 
   frontend-angular:
     container_name: frontend
