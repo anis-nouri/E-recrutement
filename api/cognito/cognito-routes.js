@@ -11,6 +11,9 @@ router.post('/cognito/confirmSignUp', cognitoController.confirmSignUp);
 // Sign Up
 router.post('/cognito/signup', cognitoController.signUp);
 
+//verify Sign In
+router.post('/cognito/verifysignin', cognitoController.verifyLogin);
+
 // Sign Out
 router.post('/cognito/signout', cognitoController.signOut);
 

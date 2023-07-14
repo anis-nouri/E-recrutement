@@ -1,30 +1,28 @@
 // cognitoController.js
 const { Auth } = require('aws-amplify');
 const AWS = require('aws-sdk');
-const { CognitoIdentityProviderClient, AuthFlowType, InitiateAuthCommand } = require("@aws-sdk/client-cognito-identity-provider");
+const { CognitoIdentityProviderClient, AuthFlowType, InitiateAuthCommand, RespondToAuthChallengeCommand } = require("@aws-sdk/client-cognito-identity-provider");
 const config = require('../config');
 
 
-
+const client = new CognitoIdentityProviderClient({
+  region: config.AWS_REGION,
+  credentials: {
+    accessKeyId: config.AWS_ACCESS_KEY,
+    secretAccessKey: config.AWS_SECRET_ACCESS_KEY,
+  },
+});
 
 async function login(req, res) {
-  console.log("zbuu")
     try {
-        const { username } = req.body;
-        const client = new CognitoIdentityProviderClient({
-            region: config.AWS_REGION,
-            credentials: {
-              accessKeyId: config.AWS_ACCESS_KEY,
-              secretAccessKey: config.AWS_SECRET_ACCESS_KEY,
-            },
-          });
-          
-
+        const { username, password } = req.body;
+        
     
       const command = new InitiateAuthCommand({
-        AuthFlow: AuthFlowType.CUSTOM_AUTH,
+        AuthFlow: AuthFlowType.USER_PASSWORD_AUTH,
         AuthParameters: {
-          USERNAME: username
+          USERNAME: username,
+          PASSWORD: password
         },
         ClientId: config.USER_POOL_APP_CLIENT_ID, 
       });
@@ -40,6 +38,36 @@ async function login(req, res) {
     }
   }
 
+  async function verifyLogin(req, resp) {
+    const { code, username, session } = req.body;
+    console.log(username);
+  
+    const input = {
+      ClientId: config.USER_POOL_APP_CLIENT_ID,
+      ChallengeName: 'CUSTOM_CHALLENGE',
+      Session: session,
+      ChallengeResponses: {
+        ANSWER: code,
+        USERNAME: username,
+      },
+    };
+  
+    const command = new RespondToAuthChallengeCommand(input);
+  
+    try {
+      const response = await client.send(command);
+      console.log(response)
+      resp.status(200).json(response);
+    } catch (error) {
+      // Handle errors and send an appropriate response
+      if (error.name === 'InvalidParameterException') {
+        console.log('Invalid parameter:', error.message);
+      }
+      resp.status(500).json({ error: error.message });
+    }
+  }
+  
+  
 
 // Sign In
 async function signIn(req, res) {
@@ -95,4 +123,5 @@ module.exports = {
   signUp,
   signOut,
   login,
+  verifyLogin,
 };
