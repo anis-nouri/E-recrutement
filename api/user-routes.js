@@ -8,7 +8,7 @@ var jwt = require('jsonwebtoken');
 // GET OFFERS
 const router = express.Router();
 
-router.post('/',requireAuth, (req,res)=>{
+router.post('/', (req,res)=>{
     pool.query('select * from offer', (err, result, fields) => {
         if (err){
             return console.log(err);

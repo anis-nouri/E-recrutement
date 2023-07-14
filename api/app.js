@@ -4,12 +4,35 @@ const app = express();
 const bodyParser = require("body-parser");
 const userRouter = require('./user-routes.js');
 const adminRouter = require('./admin-routes.js');
+const cognitoRouter= require('./cognito/cognito-routes.js')
 
 
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(express.json());
 app.use(express.json()) ;
+
+// Configure Amplify
+const { Amplify } = require('aws-amplify');
+
+Amplify.configure({
+  Auth: {
+    region: "us-east-1",
+    userPoolId: "us-east-1_BrylzPIQn",
+    userPoolWebClientId: "39rsuvtfgo83c32o8718iuqftg"
+  }
+})
+
+// Configure Amplify
+const AWS = require('aws-sdk');
+
+AWS.config.update({
+  accessKeyId: 'AKIAQZ3PILW22EEOVBCR',
+  secretAccessKey: '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',
+  region: "us-east-1",
+});
+
+
 
 
 
@@ -24,6 +47,8 @@ app.use(function(req, res, next) {
 
 app.use(userRouter)
 app.use(adminRouter)
+app.use(cognitoRouter);
+
 
 
 /***************************************************/
